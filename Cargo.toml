@@ -1,0 +1,12 @@
+[package]
+name = "rvpn"
+version = "0.1.0"
+authors = ["yamakaky"]
+
+[dependencies]
+error-chain = "0.7"
+futures = "0.1"
+ioctl = "0.3"
+libc = "0.2"
+mio = "0.6"
+tokio-core = "0.1"
