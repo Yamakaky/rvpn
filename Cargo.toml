@@ -8,4 +8,4 @@ error-chain = "0.7"
 futures = "0.1"
 mio = "0.6"
 tokio-core = "0.1"
-tun = { git = "git://github.com/Yamakaky/tun-rs.git" }
+tun = { git = "git://github.com/Yamakaky/tun-rs.git", branch="tun_io" }

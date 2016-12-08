@@ -21,13 +21,9 @@ error_chain! {
 }
 
 fn real_main() -> Result<()> {
-    let tun = tun::tun::Tun::new("pote")?;
     let mut core = core::reactor::Core::new()?;
-    let pote = unsafe {
-        mio::deprecated::unix::UnixStream::from_raw_fd(tun.file.into_raw_fd())
-    };
-    let file = core::reactor::PollEvented::new(pote, &core.handle())?;
-    let stream = file.framed(tun::datagram_framed::Parser).and_then(|msg| {
+    let tun = tun::tun::Tun::new("pote", &core.handle())?;
+    let stream = tun.framed(tun::datagram_framed::Parser).and_then(|msg| {
         println!("{}", msg.len());
         Ok(())
     }).for_each(|_| {
